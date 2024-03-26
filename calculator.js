@@ -50,4 +50,3 @@ const operate = (operator, number_one, number_two) => {
 
 }
 
-console.log(operate("multiply", 5, 5));
