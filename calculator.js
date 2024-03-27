@@ -61,12 +61,13 @@ var history = document.querySelector(".history span");
 calculator_display.value = 0;
 
 const populateDisplay = (text) => {
-
-  if (user_input == 0 && text == 0) {
+  
+  if (user_input == 0 && text == 0 && !user_input.toString().includes(".")) {
     user_input = text;
     calculator_display.value = text;
+    
   }
-  else if (user_input == 0 && text !== "." && !user_input.includes(".")) {
+  else if (user_input == 0 && text !== "." && !user_input.toString().includes(".")) {
     user_input = text;
     calculator_display.value = user_input;
   }
@@ -77,14 +78,24 @@ const populateDisplay = (text) => {
 
 }
 
-populateDisplay("0");
-console.log(user_input);
-populateDisplay(".");
-console.log(user_input);
-populateDisplay("5");
-console.log(user_input);
-populateDisplay("5");
-console.log(user_input);
+calculator.addEventListener('click', (e) => {
+  target = e.target;
+  target_button = target.className;
+  
+  switch(target_button) {
+    case "number-button":
+      populateDisplay(target.textContent);
+      break;
+  }
+
+
+
+
+
+
+
+
+});
 
 
 
