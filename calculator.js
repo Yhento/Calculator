@@ -99,7 +99,15 @@ calculator.addEventListener('click', (e) => {
 
     case "operator-button":
       findOperator(target.textContent);
-      console.log(operator);
+      if (number_one == "") {
+        number_one = parseFloat(user_input);
+        console.log("Number 1", number_one);
+        user_input = 0;
+      }
+      else if (number_two == "") {
+        number_two = parseFloat(user_input);
+        
+      }
       break;
     
     case "clear-button":
