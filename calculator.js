@@ -57,6 +57,7 @@ const operate = (operator, number_one, number_two) => {
 
 var calculator = document.querySelector(".calculator");
 var calculator_display = document.querySelector(".display");
+var decimal_button = document.querySelector("#decimal_button");
 var history = document.querySelector(".history span");
 calculator_display.value = 0;
 
@@ -84,8 +85,29 @@ const findOperator = (math_symbol) => {
     case "+":
       operator = "add";
       break;
+    case "-":
+      operator = "subtract";
+      break;
+    case "*":
+      operator = "multiply";
+      break;
+    case "/":
+      operator = "divide";
+      break;
   }
   
+}
+
+const clear_All = () => {
+  number_one = "";
+  number_two = "";
+  operator = "";
+  user_input = 0;
+  calculator_display.value = 0;
+  
+  decimal_button.classList.add("number-button");
+
+
 }
 
 calculator.addEventListener('click', (e) => {
@@ -95,10 +117,16 @@ calculator.addEventListener('click', (e) => {
   switch(target_button) {
     case "number-button":
       populateDisplay(target.textContent);
+      if (calculator_display.value.includes('.')){
+        decimal_button.classList.remove("number-button");
+      }
+      else {
+        decimal_button.classList.add("number-button");
+      }
       break;
 
     case "operator-button":
-      findOperator(target.textContent);
+      
       if (number_one == "") {
         number_one = parseFloat(user_input);
         console.log("Number 1", number_one);
@@ -106,16 +134,49 @@ calculator.addEventListener('click', (e) => {
       }
       else if (number_two == "") {
         number_two = parseFloat(user_input);
+        console.log("Number 2", number_two);
         
+        number_one = operate(operator, number_one, number_two);
+        if (number_one.toString().includes('.')){
+          number_one = parseFloat(number_one.toFixed(2));
+        }
+        user_input = 0;
+        populateDisplay(number_one);
+        if(number_one == "lmao") {
+          number_one = "";
+          console.log("Redo number one");
+        }
+        user_input = 0;
+        console.log("Number 1 is now", number_one);
+        number_two = "";
+        
+        
+      }
+      findOperator(target.textContent);
+      
+      break;
+
+    case "equal-button":
+      if(number_one !== "" && operator !== "" && number_two == "") {
+        number_two = parseFloat(user_input);
+        console.log("Number 2", number_two);
+        
+        number_one = operate(operator, number_one, number_two);
+        user_input = 0;
+        populateDisplay(number_one);
+        if(number_one == "lmao") {
+          number_one = "";
+          console.log("Redo number one");
+        }
+        user_input = 0;
+        console.log("Number 1 is now", number_one);
+        number_two = "";
+
       }
       break;
     
     case "clear-button":
-      number_one = "";
-      number_two = "";
-      operator = "";
-      user_input = 0;
-      calculator_display.value = 0;
+      clear_All();
       break;
   }
 
