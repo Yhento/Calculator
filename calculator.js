@@ -93,6 +93,7 @@ calculator.addEventListener('click', (e) => {
       operator = "";
       user_input = 0;
       calculator_display.value = 0;
+      break;
   }
 
 
