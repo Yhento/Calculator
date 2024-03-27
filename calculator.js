@@ -86,6 +86,13 @@ calculator.addEventListener('click', (e) => {
     case "number-button":
       populateDisplay(target.textContent);
       break;
+    
+    case "clear-button":
+      number_one = "";
+      number_two = "";
+      operator = "";
+      user_input = 0;
+      calculator_display.value = 0;
   }
 
 
