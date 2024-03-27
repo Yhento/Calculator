@@ -78,6 +78,16 @@ const populateDisplay = (text) => {
 
 }
 
+const findOperator = (math_symbol) => {
+
+  switch(math_symbol){
+    case "+":
+      operator = "add";
+      break;
+  }
+  
+}
+
 calculator.addEventListener('click', (e) => {
   target = e.target;
   target_button = target.className;
@@ -85,6 +95,11 @@ calculator.addEventListener('click', (e) => {
   switch(target_button) {
     case "number-button":
       populateDisplay(target.textContent);
+      break;
+
+    case "operator-button":
+      findOperator(target.textContent);
+      console.log(operator);
       break;
     
     case "clear-button":
