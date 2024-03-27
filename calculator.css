@@ -12,6 +12,11 @@ body {
   align-items: center;
 }
 
+.history {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .calculator {
   width: 500px;
   height: 600px;
@@ -32,13 +37,11 @@ body {
   flex: 1;
 }
 
-.calculator-row button {
-  flex-grow: 1;
-}
 
-.zero-row button {
-  flex: 1;
-}
-.zero-row .zero {
+#zero {
   flex-grow: 2;
 }
+.clear-button {
+  flex: 1;
+}
+
